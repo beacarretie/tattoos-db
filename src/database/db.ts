@@ -1,7 +1,6 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import 'dotenv/config';
-import { User } from "./models/User";
 
 export const AppDataSource = new DataSource({
   type: "mysql",
@@ -10,8 +9,8 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME || "root",
   password: process.env.DB_PASSWORD || "root",
   database: process.env.DB_NAME || "tattoos",
-  entities: [User],
-  migrations: [  ],
+  entities: [],
+  migrations: [`${__dirname}/migrations/**/*{.ts,.js}`],
   synchronize: false,
   logging: false,
 });

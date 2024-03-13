@@ -1,6 +1,6 @@
 import cors = require("cors")
 import express = require("express")
-import { AppDataSource } from "./db"
+import { AppDataSource } from "./database/db"
 
 const app = express()
 
