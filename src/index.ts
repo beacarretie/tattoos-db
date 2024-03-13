@@ -1,6 +1,11 @@
-import cors = require("cors")
-import express = require("express")
-import { AppDataSource } from "./database/db"
+import express from "express";
+import 'dotenv/config'
+import  cors  from "cors";
+import { router as routerUsers } from "./routes/usersRoutes";
+import { router as routerArtist } from "./routes/tattooArtistsRoutes";
+import { AppDataSource } from "./database/db";
+import { router as routerAppointments} from "./routes/appointmentsRoutes";
+import { router as routerTattoo} from "./routes/tattoosRoutes";
 
 const app = express()
 
@@ -9,11 +14,10 @@ app.use(cors())
 const PORT = process.env.PORT || 4004
 
 // routes
-// app.use('/user', routerUsers)
-
-app.get("/health", (req, res)=> {
-    return res.send("healthy")
-})
+app.use('/user', routerUsers)
+app.use('/artist' , routerArtist)
+app.use('/appointments', routerAppointments)
+app.use('/tattoo', routerTattoo)
 
 AppDataSource.initialize()
   .then(() => {
