@@ -1,29 +1,25 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Appointment } from "./Appointment";
 
-
-@Entity("users")
-export class User extends BaseEntity {
+@Entity("tattoos")
+export class Tattoo extends BaseEntity{
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()
-  username!: string;
+  work!: string;
 
   @Column()
-  email!: string;
+  name!: string;
 
   @Column()
-  phone_number!: number;
+  description!: string;
 
   @Column()
-  password!: string;
+  photo!: string;
 
   @Column()
-  role!: string;
-
-  @Column()
-  is_active!: boolean;
+  price!: number;
 
   @Column()
   created_at!: Date;
