@@ -10,15 +10,15 @@ import { CreateAppointmentsTable1710319179931 } from "./migrations/1710319179931
 import { Tattoo } from "./../models/Tattoo";
 import { Appointment } from "../models/Appointment";
 
-type database = "mysql" | "mariadb"
+type database = "mysql" 
 
-export const AppDataSource = new DataSource({
+const AppDataSource = new DataSource({
   type: process.env.DB_TYPE as database,
   host: process.env.DB_HOST,
-  port: 3306,
-  username: process.env.DB_USERNAME,
+  port: 3307,
+  username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  database: process.env.DB_DATABASE,
   entities: [User, Tattoo_artist, Tattoo, Appointment],
   migrations: [
     CreateUsersTable1710255956715,
@@ -30,4 +30,5 @@ export const AppDataSource = new DataSource({
   logging: false,
 });
 
+export default AppDataSource;
 // export { AppDataSource }
