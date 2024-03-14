@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateTasksTable1710315839201 implements MigrationInterface {
+export class CreateUsersTable1710438289831 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
           new Table({
-            name: "tattoo_artists",
+            name: "users",
             columns: [
               {
                 name: "id",
@@ -15,9 +15,19 @@ export class CreateTasksTable1710315839201 implements MigrationInterface {
                 generationStrategy: "increment",
               },
               {
-                name: "tattoo_artist",
+                name: "username",
                 type: "varchar",
                 length: "50",
+              },
+              {
+                name: "email",
+                type: "varchar",
+                length: "100",
+                isUnique: true,
+              },
+              {
+                name: "phone_number",
+                type: "int",
               },
               {
                 name: "password",
@@ -25,22 +35,15 @@ export class CreateTasksTable1710315839201 implements MigrationInterface {
                 length: "200",
               },
               {
-                name: "description",
-                type: "varchar",
-                length: "255",
-                default: '"rellenar"',
-              },
-              {
-                name: "photo",
-                type: "varchar",
-                length: "2000",
-                default: '"photo"',
-              },
-              {
                 name: "role",
                 type: "enum",
                 enum: ["user", "admin", "super_admin"],
-                default: '"admin"',
+                default: '"user"',
+              },
+              {
+                name: "is_active",
+                type: "boolean",
+                default: true,
               },
               {
                 name: "created_at",
@@ -59,8 +62,8 @@ export class CreateTasksTable1710315839201 implements MigrationInterface {
         );
       }
 
-      public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("tattoo_artists");
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable("users");
       }
 
 }

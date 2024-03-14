@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateAppointmentsTable1710319179931 implements MigrationInterface {
+export class CreateAppointmentsTable1710438367212 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
@@ -72,6 +72,7 @@ export class CreateAppointmentsTable1710319179931 implements MigrationInterface 
           true
         );
       }
+
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable("appointments");
       }

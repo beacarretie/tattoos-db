@@ -1,14 +1,15 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import 'dotenv/config'
-import { CreateUsersTable1710255956715 } from "./migrations/1710255956715-CreateUsersTable";
 import { User } from "./../models/User";
-import { CreateTasksTable1710315839201 } from "./migrations/1710315839201-CreateTasksTable";
 import { Tattoo_artist } from "../models/Tattoo_artists";
-import { CreateTattoosTable1710319159133 } from "./migrations/1710319159133-CreateTattoosTable";
-import { CreateAppointmentsTable1710319179931 } from "./migrations/1710319179931-CreateAppointmentsTable";
 import { Tattoo } from "./../models/Tattoo";
 import { Appointment } from "../models/Appointment";
+import { CreateRolesTable1710438273869 } from "./migrations/1710438273869-CreateRolesTable";
+import { CreateUsersTable1710438289831 } from "./migrations/1710438289831-CreateUsersTable";
+import { CreateTattoosTable1710438305368 } from "./migrations/1710438305368-CreateTattoosTable";
+import { CreateArtistsTable1710438342748 } from "./migrations/1710438342748-CreateArtistsTable";
+import { CreateAppointmentsTable1710438367212 } from "./migrations/1710438367212-CreateAppointmentsTable";
 
 type database = "mysql" 
 
@@ -21,10 +22,11 @@ const AppDataSource = new DataSource({
   database: process.env.DB_DATABASE,
   entities: [User, Tattoo_artist, Tattoo, Appointment],
   migrations: [
-    CreateUsersTable1710255956715,
-    CreateTasksTable1710315839201,
-    CreateTattoosTable1710319159133,
-    CreateAppointmentsTable1710319179931
+    CreateRolesTable1710438273869,
+    CreateUsersTable1710438289831,
+    CreateTattoosTable1710438305368,
+    CreateArtistsTable1710438342748,
+    CreateAppointmentsTable1710438367212,
   ],
   synchronize: false,
   logging: false,
