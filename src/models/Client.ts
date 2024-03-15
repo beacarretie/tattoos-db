@@ -14,12 +14,12 @@ export class Client extends BaseEntity{
     area!: string;
 
     
-    //Relation 1:1 with user
+    //Relation: Client {1}--{1} User
     @OneToOne(()=>User,(user)=>user.id)
     @JoinColumn({name:"user_id"})
     user!:User
 
-    //Relation {1}--{0..n} with appointments
+    //Relation Client {1}--{0..n} Appointments
     @OneToMany(() => Appointment, (Appointment) => Appointment.client)
     appointments?: Appointment[];
 

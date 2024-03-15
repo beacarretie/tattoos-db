@@ -17,12 +17,12 @@ export class Artist extends BaseEntity {
     area!: string;
 
 
-    //Relation 1:1 with user
+    //Relation Artist {1}--{1} User
     @OneToOne(()=>User,(user)=>user.id)
     @JoinColumn({name:"user_id"})
     user!:User
 
-    //Relation {1}--{0..n} with appointments
+    // Relation: Artist {1}--{0..n} Appointments
     @OneToMany(() => Appointment, (Appointment) => Appointment.artist)
     appointments?: Appointment[];
     
