@@ -5,10 +5,7 @@ declare global {
     namespace Express {
         export interface Request {
             //definition of the atributte tokenData fot the request
-            tokenData:{
-                userId:number;
-                userRole:string;
-            }
+            tokenData:TokenData
         }
     }
 }
