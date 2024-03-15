@@ -21,10 +21,10 @@ app.get('/',baseRoutes);  //baseRoutes is not defined
 app.use('/api',apiRoutes);  //apiRoutes is not defined
 
 // user controller
-// app.get('/api/users',userController.getAll)
-// app.post('/api/users',userController.create)
-// app.put('/api/users',userController.update)
-// app.delete('/api/users',userController.delete)
+app.get('/api/users',userController.getAll)
+app.post('/api/users',userController.create)
+app.put('/api/users',userController.update)
+app.delete('/api/users',userController.delete)
 
 
 export default app;

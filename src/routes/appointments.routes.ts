@@ -1,6 +1,5 @@
 import express from 'express';
 import { appointmentController } from '../controllers/appointmentController';
-import { de } from '@faker-js/faker';
 import { authMiddleware } from '../middlewares/authMiddleware';
 const router = express.Router();
 
