@@ -1,36 +1,43 @@
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Appointment } from "./Appointment";
+import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn, JoinColumn, ManyToMany, OneToOne, OneToMany } from "typeorm"
+import {Role} from "./Role"
+import { Artist } from "./Artist";
+import { Client } from "./Client";
 
 
-@Entity("users")
+@Entity('users')
 export class User extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id!: number;
+    @PrimaryGeneratedColumn()
+    id!:number;
 
-  @Column()
-  username!: string;
+    @Column({name:"first_name"})
+    firstName!: string;
 
-  @Column()
-  email!: string;
+    @Column({name:"last_name"})
+    lastName!:string;
 
-  @Column()
-  phone_number!: number;
+    @Column({name:"email"})
+    email!:string;
 
-  @Column()
-  password!: string;
+    @Column({name:"phone"})
+    phone!:number;
 
-  @Column()
-  role!: string;
+    @Column({name:"password", select:false})
+    password!:string;
 
-  @Column()
-  is_active!: boolean;
+    @Column({name:"is_active"})
+    isActive!:boolean;
 
-  @Column()
-  created_at!: Date;
+    //Relacion N:1 con Roles
+    @ManyToOne(()=>Role,(role)=>role.user)
+    @JoinColumn({name:"role_id"})
+    role!:Role;
 
-  @Column()
-  updated_at!: Date;
+    //Relation {1}--{0..n} clients
+    @OneToMany(() => Client, (client) => client.user)
+    clients?: Client[];
 
-  @OneToMany(() => Appointment, appointment => appointment.user)
-  appointments!: Appointment[];
+    //Relation {1}--{0..n} with artists
+    @OneToMany(() => Artist, (artist) => artist.user)
+    artists?: Artist[];
+
 }

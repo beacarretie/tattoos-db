@@ -1,44 +1,35 @@
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
-import { User } from "./User";
-import { Tattoo_artist } from "./Tattoo_artists";
-import { Tattoo } from "./Tattoo";
+import { BaseEntity, Column, Entity, ManyToMany, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from "typeorm"
+import { Artist } from "./Artist";
+import { Client } from "./Client";
 
-
-@Entity("appointments")
+@Entity('appointments')
 export class Appointment extends BaseEntity{
     @PrimaryGeneratedColumn()
-    id!: number;
-  
-    @Column()
-    user_id!: number;
-  
-    @Column()
-    tattoo_artist_id!: number;
-  
-    @Column()
-    tattoo_id!: number;
-  
-    @Column()
-    date!: Date;
-  
-    @Column()
-    status!: string;
-  
-    @Column()
-    created_at!: Date;
-  
-    @Column()
-    updated_at!: Date;
-  
-    @ManyToOne(() => User, user => user.appointments)
-    @JoinColumn({ name: "user_id"})
-    user!: User;
+    id?: number;
 
-    @ManyToOne(() => Tattoo_artist, tattoo_artist => tattoo_artist.appointments)
-    @JoinColumn({ name: "tattoo_artist_id"})
-    tattoo_artist!: Tattoo_artist;
+    @Column({ name:"day_date" })
+    day_date!: Date;
 
-    @ManyToOne(() => Tattoo, tattoo => tattoo.appointments)
-    @JoinColumn({ name: "tattoo_id"})
-    tattoo!: Tattoo;
-  }
+    @Column({ name: "artist_id" })
+    artistID!: number;
+
+    @Column({name:"client_id"})
+    clientID!: number;
+
+    @Column({name:"description"})
+    description!: string;
+
+    @Column({name:"price"})
+    price!: number;
+
+    //relation N:1 with artist 
+    @ManyToOne(()=>Artist,(artist)=>artist.id)
+    @JoinColumn({name:"artist_id"})
+    artist!:Artist;
+
+    //relation N:1 with client 
+    @ManyToOne(()=>Client,(client)=>client.id)
+    @JoinColumn({name:"client_id"})
+    client!:Client;
+
+}
