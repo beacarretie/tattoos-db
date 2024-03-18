@@ -6,5 +6,8 @@ const router = express.Router();
 /////////      ARTISTS ROUTES      //////////////////
 router.get('/',artistController.getAll);
 
+router.post('/create', artistController.create);
+
+
 
 export default router;

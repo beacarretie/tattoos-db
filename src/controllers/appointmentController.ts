@@ -23,7 +23,7 @@ export const appointmentController = {
                         day_date:true,
                         description:true,
                         price:true,
-                    }
+                    },
                 }
             );
             

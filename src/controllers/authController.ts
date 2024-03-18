@@ -70,7 +70,7 @@ export const authController = {
                 select:{
                     id:true,
                     email:true,
-                    password:true,} ,
+                    password:true} ,
                 where: {
                     email: email
                 }});

@@ -27,37 +27,29 @@ podrá ver él mismo.
 Teniendo en cuenta los requisitos, llegamos a la conclusión de que este sería
 el mínimo de endpoints convenientes:
 
-● Registro de usuarios.
-● Login de usuarios.
-● Perfil de usuario.
-● Modificación de datos del perfil.
-
-● Creación de citas.
-● Editar citas.
-● Eliminación de citas
-
-● Ver todas las citas que tengo como cliente (solo las propias).
-● Ver todas las citas existentes conmigo (role tatuador).
-● Listar tatuadores
-
-● Ver todos los clientes registrados (super admin) (EXTRA)
-● Crear tatuadores (superadmin) (EXTRA)
-● Ver todos los clientes registrados (super admin) (EXTRA)
-● Eliminar usuario del sistema(super admin ) (EXTRA)
-● Ver una cita en detalle (EXTRA).
-● El super_admin debe otorgar roles a los usuarios del sistema(EXTRA)
-● Validar la fecha de la cita(EXTRA)
-● Añadir tipos de intervención (tattoo / piercing ) a las citas (EXTRA)
+1. Registro de usuarios.
+2. Login de usuarios.
+3. Perfil de usuario.
+4. Modificación de datos del perfil.
+5. Creación de citas.
+6. Editar citas.
+7. Eliminación de citas
+8. Ver todas las citas que tengo como cliente (solo las propias).
+9. Ver todas las citas existentes conmigo (role tatuador).
+10. Listar tatuadores
+11. Ver todos los clientes registrados (super admin) (EXTRA)
+12. Crear tatuadores (superadmin) (EXTRA)
+13. Ver todos los clientes registrados (super admin) (EXTRA)
+14. Eliminar usuario del sistema(super admin ) (EXTRA)
+15. Ver una cita en detalle (EXTRA).
+16. El super_admin debe otorgar roles a los usuarios del sistema(EXTRA)
+17. Validar la fecha de la cita(EXTRA)
+18. Añadir tipos de intervención (tattoo / piercing ) a las citas (EXTRA)
 ## Stack
-Para el desarrollo del backend se utilizará TypeOrm o Mongo con Mongoose,
-a preferencia del alumnado.
-● Debemos usar ES6 o TS, se valorará el dominio sobre las promesas, así como
+1. Para el desarrollo del backend se utilizará TypeOrm.
+2. Debemos usar ES6 o TS, se valorará el dominio sobre las promesas, así como
 la funcionalidad de async/await.
-
-3
-
-● El proyecto se subirá a un repositorio público de GitHub y se valorará la
-existencia de ramas o trabajo en features (Git Flow), así como diversos
+3. El proyecto se subirá a un repositorio público de GitHub y se valorará la existencia de ramas o trabajo en features (Git Flow), así como diversos
 commits con la evolución del proyecto.
 
 ## Diagrama BD
@@ -219,31 +211,50 @@ npx typeorm-ts-node-commonjs schema:drop -d ./src/database/data-source.ts
 - AUTH
     - REGISTER
 
-            POST http://localhost:3000/api/register
+            POST http://localhost:3000/api/users/create
         body:
         ``` js
             {
-                "user": "David",
-                "email": "david@david.com",
-                "password": "princes"
+                "firstName": "Beatriz",
+                "lastName": "Carretie",
+                "email": "bcarretie@ezenit.com",
+                "phone": "676477223",
+                "password": "12345678",
+                "isActive":"1"
             }
         ```
 
     - LOGIN
 
-            POST http://localhost:3000/api/login  
+            POST http://localhost:3000/api/auth/login  
         body:
         ``` js
             {
-                "user": "David",
-                "email": "david@david.com",
-                "password": "princes"
+                "email": "bcarretie@ezenit.com",
+                "password": "12345678"
             }
         ```
-- RUTINAS
-    - RECUPERAR RUTINAS  
-
-            GET http://localhost:3000/api/rutina
-
-    - ...
+- ADMIN
+    - DELETE USER
+    
+            DELETE http://localhost:3000/api/users/delete/:1
+    
+    - GET DETAIL APPOINTMENTS
+    
+            GET http://localhost:3000/api/appointments/1
+    
+    - POST CREATE ARTIST
+    
+            POST http://localhost:3000/api/artists/create
+        body:
+        ```js
+            {
+                "firstName":"Artist test", 
+                "email": "artist@tattoo.com", 
+                "password": "12345678", 
+                "phone": "123456789",
+                "style": "tribal"
+	        }
+        ```
+            
 </details>

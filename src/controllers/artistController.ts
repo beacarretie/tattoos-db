@@ -32,4 +32,44 @@ export const artistController = {
         }
     },
 
+    async create(req:Request,res:Response){
+        try{
+            const {firstName, email, password, phone,style,area} = req.body;
+
+            if(!firstName || !email || !password || !phone){
+                res.status(400).json({message:"Failed to create artist"});
+                return;
+            }
+
+            const userExists = await User.findOne({where:{email:email}});
+
+            if(userExists){
+                res.status(400).json({message:"Email already in use"});
+                return;
+            }
+
+            const user = User.create({
+                firstName:firstName,
+                email:email,
+                password:password,
+                phone:phone,
+                role:UserRoles.ARTIST
+            });
+
+            await User.save(user);
+
+            const artist = Artist.create({
+                style:style,
+                area:area,
+                user:user
+            });
+
+            await Artist.save(artist);
+
+            res.status(201).json({message:"Artist created succesfully"});
+
+
+        }catch(error){}
+    },
+
 }

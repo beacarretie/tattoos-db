@@ -11,7 +11,7 @@ export const userController = {
     //REGISTER
     async create(req:Request,res:Response){
         try {
-            const {firstName,lastName,email,phone,password,isActive,} = req.body;
+            const {firstName,lastName,email,phone,password,isActive} = req.body;
             const hashedPassword = await bcrypt.hash(password,10);
             
             const user = User.create({
