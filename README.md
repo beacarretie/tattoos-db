@@ -215,11 +215,11 @@ npx typeorm-ts-node-commonjs schema:drop -d ./src/database/data-source.ts
         body:
         ``` js
             {
-                "firstName": "Beatriz",
-                "lastName": "Carretie",
-                "email": "bcarretie@ezenit.com",
-                "phone": "676477223",
-                "password": "12345678",
+                "firstName": "Pepito",
+                "lastName": "Pérez",
+                "email": "pepito@tattoostudio.com",
+                "phone": "123456789",
+                "password": "87654321",
                 "isActive":"1"
             }
         ```
@@ -230,14 +230,14 @@ npx typeorm-ts-node-commonjs schema:drop -d ./src/database/data-source.ts
         body:
         ``` js
             {
-                "email": "bcarretie@ezenit.com",
-                "password": "12345678"
+                "email": "pepito@tattoostudio.com",
+                "password": "87654321"
             }
         ```
 - ADMIN
     - DELETE USER
     
-            DELETE http://localhost:3000/api/users/delete/:1
+            DELETE http://localhost:3000/api/users/delete/1
     
     - GET DETAIL APPOINTMENTS
     
@@ -256,5 +256,81 @@ npx typeorm-ts-node-commonjs schema:drop -d ./src/database/data-source.ts
                 "style": "tribal"
 	        }
         ```
+
+- ARTISTS
+        
+    - GET ALL ARTISTS
+    
+            GET http://localhost:3000/api/artists
+    
+- APPOINTMENTS
+
+    - CREATE APPOINTMENT
+    
+            POST http://localhost:3000/api/appointments/create
+        
+        body:
+        ```js
+            {
+                "day_date": "2024-08-03T15:48:02.000Z",
+	            "description": "Lorem ipsum.",
+	            "artist":5,
+	            "client":9,
+	            "price": 9734
+                
+            }
+    - GET ALL APPOINTMENTS
+        
+            GET http://localhost:3000/api/appointments
+
+    - DELETE APPOINTMENT
+    
+            DELETE http://localhost:3000/api/appointments/4
+    
+    - GET APPOINTMENT BY ID
+    
+            GET http://localhost:3000/api/appointments/3
+
+- USER
+    
+    - UPDATE SELF PROFILE
             
+            PUT http://localhost:3000/api/users/edit/2
+        body:
+        ```js
+            {
+                "firstName": "Houston",
+                "lastName": "Carroll",
+                "email": "Dudley_Ledner27@gmail.com",
+                "phone": 290867512,
+                "isActive": true
+            }
+        ```
+    - GET SELF PROFILE
+            
+            GET http://localhost:3000/api/users/profile/
+    
+    - GET ALL USERS
+    
+            GET http://localhost:3000/api/users/all
+    
+    - CREATE USER
+        
+            POST http://localhost:3000/api/users/create
+            
+        body:
+        ```js
+            {
+                      "firstName": "Pablo",
+                      "lastName": "Picapiedra",
+                      "email": "pablo.picapiedra@hotmail.coma",
+                      "phone": 765933668,
+                      "password": "12345678",
+                      "isActive": true
+            }
+        ```
+    - GET USER BY ID
+    
+            GET http://localhost:3000/api/users/4
+
 </details>
