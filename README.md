@@ -293,19 +293,6 @@ npx typeorm-ts-node-commonjs schema:drop -d ./src/database/data-source.ts
 
 - USER
     
-    - UPDATE SELF PROFILE
-            
-            PUT http://localhost:3000/api/users/edit/2
-        body:
-        ```js
-            {
-                "firstName": "Houston",
-                "lastName": "Carroll",
-                "email": "Dudley_Ledner27@gmail.com",
-                "phone": 290867512,
-                "isActive": true
-            }
-        ```
     - GET SELF PROFILE
             
             GET http://localhost:3000/api/users/profile/
