@@ -118,7 +118,8 @@ export const appointmentController = {
         }
     },
 
-    //Get all Appointment by Client
+    //Get all Appointments by Client
+    
     async getByLogedClient(req:Request,res:Response){
 
     const reqToken = req.tokenData.userId;
