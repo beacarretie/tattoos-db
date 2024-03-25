@@ -4,31 +4,19 @@ import { authMiddleware } from '../middlewares/authMiddleware';
 import { authorizeMiddleware } from '../middlewares/authorize';
 const router = express.Router();
 
+
 //////////      PROFILE ROUTES      //////////////////
 
+//get loged user profile
+router.get('/profile/',authMiddleware,authorizeMiddleware(["Artist","Client"]), userController.getLogedUser);
+
+//Update loged user profile
+router.put('/profile/update',authMiddleware,authorizeMiddleware(["Artist","Client"]), userController.updateLogedUser);
 
 
-//get all users: api/users/all
-router.get('/all', authMiddleware, userController.getAll);
+//get user by id
+router.get('/:id', authMiddleware, authorizeMiddleware(["Artist","Client"]), userController.getProfileById);
 
-//crear usuario: api/users/create
-router.post('/create', userController.create);
-
-//editar usuario : api/users/edit/:id
-router.put('/edit/:id',authMiddleware ,userController.update);
-
-//delete user: api/users/delete/:id
-router.delete('/delete/:id',authMiddleware, userController.delete);
-
-//get loged user profile: api/users/profile
-router.get('/profile/',authMiddleware, userController.getLogedUser);
-
-//Update loged user profile: api/users/profile/update
-router.put('/profile/update',authMiddleware, userController.updateLogedUser);
-
-
-//get user id: api/users/:id
-router.get('/:id', authMiddleware, userController.getProfileById);
 
 ///////////     PROTECTED ROUTES    /////////////////////
 

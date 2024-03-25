@@ -7,27 +7,27 @@ const router = express.Router();
 /////////      APPOINTMENTS ROUTES      //////////////////
 
 //create appointment
-router.post('/create',authMiddleware, appointmentController.create);
+router.post('/create',authMiddleware, authorizeMiddleware(["Artist"]), appointmentController.create);
 
 //edit appointment
-router.put('/:id',authMiddleware, appointmentController.update);
+router.put('/:id',authMiddleware, authorizeMiddleware(["Artist"]), appointmentController.update);
 
 //delete appointment
-router.delete('/:id',authMiddleware, appointmentController.delete);
+router.delete('/:id',authMiddleware, authorizeMiddleware(["Client","Artist"]), appointmentController.delete);
 
 //get appointments by client
-router.get('/client/appointment',authMiddleware, appointmentController.getByLogedClient);
+router.get('/client/appointment',authMiddleware, authorizeMiddleware(["Client"]), appointmentController.getByLogedClient);
 
 //get appointments by artist
-router.get('/artist/appointment',authMiddleware, appointmentController.getByLogedArtist);
+router.get('/artist/appointment',authMiddleware, authorizeMiddleware(["Artist"]), appointmentController.getByLogedArtist);
 
 
 //////////////////// PROTECTED ROUTES //////////////////////
 
-//get all jobdates
+//get all appointments
 router.get('/',authMiddleware,authorizeMiddleware(["Admin"]), appointmentController.getAll);
 
-//get jobdatebyid
+//get appointment by id
 router.get('/:id',authMiddleware,authorizeMiddleware(["Admin"]), appointmentController.getById);
 
 export default router;
