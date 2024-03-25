@@ -57,9 +57,10 @@ commits con la evolución del proyecto.
 <summary>Endpoints</summary>
 
 - AUTH
-    - REGISTER
 
-            POST http://localhost:3000/api/users/create
+    - Registro de usuarios.
+
+            POST http://localhost:3000/api/auth/register
         body:
         ``` js
             {
@@ -72,7 +73,7 @@ commits con la evolución del proyecto.
             }
         ```
 
-    - LOGIN
+    - Login de usuarios.
 
             POST http://localhost:3000/api/auth/login  
         body:
@@ -82,38 +83,10 @@ commits con la evolución del proyecto.
                 "password": "87654321"
             }
         ```
-- ADMIN
-    - DELETE USER
-    
-            DELETE http://localhost:3000/api/users/delete/1
-    
-    - GET DETAIL APPOINTMENTS
-    
-            GET http://localhost:3000/api/appointments/1
-    
-    - POST CREATE ARTIST
-    
-            POST http://localhost:3000/api/artists/create
-        body:
-        ```js
-            {
-                "firstName":"Artist test", 
-                "email": "artist@tattoo.com", 
-                "password": "12345678", 
-                "phone": "123456789",
-                "style": "tribal"
-	        }
-        ```
-
-- ARTISTS
-        
-    - GET ALL ARTISTS
-    
-            GET http://localhost:3000/api/artists
     
 - APPOINTMENTS
 
-    - CREATE APPOINTMENT
+    - Creación de citas.
     
             POST http://localhost:3000/api/appointments/create
         
@@ -127,45 +100,62 @@ commits con la evolución del proyecto.
 	            "price": 9734
                 
             }
-    - GET ALL APPOINTMENTS
+    - Ver todas las citas que tengo como cliente (solo las propias).
         
-            GET http://localhost:3000/api/appointments
+            GET http://localhost:3000/api/appointments/client/appointment
 
-    - DELETE APPOINTMENT
+    - Eliminación de citas
     
-            DELETE http://localhost:3000/api/appointments/4
+            DELETE http://localhost:3000/api/appointments/2
     
-    - GET APPOINTMENT BY ID
+    - Editar citas.
     
-            GET http://localhost:3000/api/appointments/3
+            PUT http://localhost:3000/api/appointments/3
 
-- USER
-    
-    - GET SELF PROFILE
-            
-            GET http://localhost:3000/api/users/profile/
-    
-    - GET ALL USERS
-    
-            GET http://localhost:3000/api/users/all
-    
-    - CREATE USER
-        
-            POST http://localhost:3000/api/users/create
-            
         body:
         ```js
             {
-                      "firstName": "Pablo",
-                      "lastName": "Picapiedra",
-                      "email": "pablo.picapiedra@hotmail.coma",
-                      "phone": 765933668,
-                      "password": "12345678",
-                      "isActive": true
+                "day_date": "2024-08-03T15:48:02.000Z",
+	            "description": "Lorem ipsum.",
+	            "artist":5,
+	            "client":9,
+	            "price": 9734
+                
             }
-        ```
-    - GET USER BY ID
+
+    - Ver todas las citas existentes conmigo (role tatuador).
     
-            GET http://localhost:3000/api/users/4
+            GET http://localhost:3000/api/appointments/artist/appointment
+
+
+- USER
+    
+    - Perfil de usuario.
+            
+            GET http://localhost:3000/api/users/profile/
+    
+
+    - Modificación de datos del perfil.
+    
+            PUT http://localhost:3000/api/users/profile/update
+
+         body:
+        ```js
+            {
+	                  "id": 80,
+	                  "firstName": "beaTRIZ",
+	                  "lastName": null,
+	                  "email": "bcarre@gmail.com",
+                      "phone": null,
+	                  "isActive": true,
+                      "name": "client"
+            }
+
+- ADMIN
+    
+    - Listar tatuadores
+            
+            GET http://localhost:3000/api/artists
+        ```
 
 </details>
