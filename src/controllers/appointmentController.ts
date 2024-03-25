@@ -133,7 +133,7 @@ export const appointmentController = {
             userID:req.tokenData!.userId
         }});
 
-        console.log(req.tokenData);
+        console.log("CLIENT", logedClient);
     const appointments = await Appointment.find({
         relations:{
             artist:{

@@ -16,7 +16,7 @@ router.use('/', baseRoutes);
 // users routes
 router.use('/users', usersRoutes);
 
-// jobdates routes
+// appointments routes
 router.use('/appointments', appointmentsRoutes);
 
 // auth routes

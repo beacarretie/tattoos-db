@@ -7,27 +7,27 @@ const router = express.Router();
 /////////      APPOINTMENTS ROUTES      //////////////////
 
 //create appointment
-router.post('/create',authMiddleware, authorizeMiddleware(["Artist"]), appointmentController.create);
+router.post('/create',authMiddleware, authorizeMiddleware(["artist"]), appointmentController.create);
 
 //edit appointment
-router.put('/:id',authMiddleware, authorizeMiddleware(["Artist"]), appointmentController.update);
+router.put('/:id',authMiddleware, authorizeMiddleware(["artist"]), appointmentController.update);
 
 //delete appointment
-router.delete('/:id',authMiddleware, authorizeMiddleware(["Client","Artist"]), appointmentController.delete);
+router.delete('/:id',authMiddleware, authorizeMiddleware(["client","artist"]), appointmentController.delete);
 
 //get appointments by client
-router.get('/client/appointment',authMiddleware, authorizeMiddleware(["Client"]), appointmentController.getByLogedClient);
+router.get('/client/appointment',authMiddleware, authorizeMiddleware(["client"]), appointmentController.getByLogedClient);
 
 //get appointments by artist
-router.get('/artist/appointment',authMiddleware, authorizeMiddleware(["Artist"]), appointmentController.getByLogedArtist);
+router.get('/artist/appointment',authMiddleware, authorizeMiddleware(["artist"]), appointmentController.getByLogedArtist);
 
 
 //////////////////// PROTECTED ROUTES //////////////////////
 
 //get all appointments
-router.get('/',authMiddleware,authorizeMiddleware(["Admin"]), appointmentController.getAll);
+router.get('/',authMiddleware,authorizeMiddleware(["admin"]), appointmentController.getAll);
 
 //get appointment by id
-router.get('/:id',authMiddleware,authorizeMiddleware(["Admin"]), appointmentController.getById);
+router.get('/:id',authMiddleware,authorizeMiddleware(["admin"]), appointmentController.getById);
 
 export default router;
