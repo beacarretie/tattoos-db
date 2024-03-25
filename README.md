@@ -58,19 +58,6 @@ commits con la evolución del proyecto.
 
 - AUTH
 
-    - Registro de usuarios.
-
-            POST http://localhost:3000/api/users/create
-        body:
-        ``` js
-            {
-		         "firstName": "artist bea",
-		         "email": "artistbea51@gmail.com",
-		         "password": "12345678",
-		         "role": "ARTIST"
-            }
-        ```
-
     - Login de usuarios.
 
             POST http://localhost:3000/api/auth/login  
@@ -127,6 +114,19 @@ commits con la evolución del proyecto.
 
 
 - USER
+
+    - Registro de usuarios.
+
+            POST http://localhost:3000/api/users/create
+        body:
+        ``` js
+            {
+		         "firstName": "artist bea",
+		         "email": "artistbea51@gmail.com",
+		         "password": "12345678",
+		         "role": "ARTIST"
+            }
+        ```
     
     - Perfil de usuario.
             
