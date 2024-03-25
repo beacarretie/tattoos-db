@@ -27,7 +27,7 @@ router.put('/edit/role/:id',authMiddleware,authorizeMiddleware(["Admin"]), userC
 router.get('/all', authMiddleware,authorizeMiddleware(["Admin"]), userController.getAll);
 
 //Create user
-router.post('/create',authMiddleware,authorizeMiddleware(["Admin"]), userController.create);
+router.post('/create', userController.create);
 
 //edit user
 router.put('/edit/:id',authMiddleware,authorizeMiddleware(["Admin"]), userController.update);

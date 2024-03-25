@@ -6,14 +6,24 @@ import { Client } from "../models/Client";
 import { Role } from "../models/Role";
 import bcrypt from 'bcrypt';
 import { UserRoles } from "../constants/UserRoles";
-
+// interface UserData {
+//     firstName: string,
+//     lastName: string,
+//     email: string,
+//     phone: string,
+//     password: string,
+//     isActive: string;
+//     role: number;
+// }
+  
 export const userController = {
     //REGISTER
     async create(req:Request,res:Response){
         try {
-            const {firstName,lastName,email,phone,password,isActive} = req.body;
+            const {firstName,lastName,email,phone,password,isActive,role} = req.body;
             const hashedPassword = await bcrypt.hash(password,10);
-            
+            console.log("role",role)
+            console.log(UserRoles[role])
             const user = User.create({
                 firstName: firstName,
                 lastName: lastName,
@@ -21,7 +31,7 @@ export const userController = {
                 phone: phone,
                 password:hashedPassword,
                 isActive:isActive,
-                role:UserRoles.CLIENT
+                role:   UserRoles[role]
 
             });
             await user.save();

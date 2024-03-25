@@ -60,16 +60,14 @@ commits con la evolución del proyecto.
 
     - Registro de usuarios.
 
-            POST http://localhost:3000/api/auth/register
+            POST http://localhost:3000/api/users/create
         body:
         ``` js
             {
-                "firstName": "Pepito",
-                "lastName": "Pérez",
-                "email": "pepito@tattoostudio.com",
-                "phone": "123456789",
-                "password": "87654321",
-                "isActive":"1"
+		         "firstName": "artist bea",
+		         "email": "artistbea51@gmail.com",
+		         "password": "12345678",
+		         "role": "ARTIST"
             }
         ```
 
