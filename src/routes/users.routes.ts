@@ -8,10 +8,10 @@ const router = express.Router();
 //////////      PROFILE ROUTES      //////////////////
 
 //get loged user profile
-router.get('/profile/',authMiddleware,authorizeMiddleware(["Artist","Client"]), userController.getLogedUser);
+router.get('/profile/',authMiddleware, userController.getLogedUser);
 
 //Update loged user profile
-router.put('/profile/update',authMiddleware,authorizeMiddleware(["Artist","Client"]), userController.updateLogedUser);
+router.put('/profile/update',authMiddleware, userController.updateLogedUser);
 
 
 //get user by id

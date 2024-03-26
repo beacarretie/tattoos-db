@@ -27,17 +27,9 @@ export class User extends BaseEntity {
     @Column({name:"is_active"})
     isActive!:boolean;
 
-    //Relacion {1}--{1} con Roles
+    //Relacion {0..n}--{1} con Roles
     @ManyToOne(()=>Role,(role)=>role.user)
     @JoinColumn({name:"role_id"})
     role!:Role;
-
-    //Relation {1}--{0..n} clients
-    @OneToMany(() => Client, (client) => client.user)
-    clients?: Client[];
-
-    //Relation {1}--{0..n} with artists
-    @OneToMany(() => Artist, (artist) => artist.user)
-    artists?: Artist[];
 
 }

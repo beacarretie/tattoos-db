@@ -56,9 +56,24 @@ commits con la evolución del proyecto.
 <details>
 <summary>Endpoints</summary>
 
-- AUTH
+- REGISTER/LOGIN
 
-    - Login de usuarios.
+    //ADMIN ARTIST, CLIENT
+    - Registro de usuarios.
+
+            POST http://localhost:3000/api/users/create
+        body:
+        ``` js
+            {
+		         "firstName": "artist bea",
+		         "email": "artistbea51@gmail.com",
+		         "password": "12345678",
+		         "role": "ARTIST"
+            }
+        ```
+
+    //ADMIN ARTIST, CLIENT
+    - Login de usuarios. 
 
             POST http://localhost:3000/api/auth/login  
         body:
@@ -69,8 +84,9 @@ commits con la evolución del proyecto.
             }
         ```
     
-- APPOINTMENTS
+- APPOINTMENTS INFO
 
+    //ADMIN, ARTIST
     - Creación de citas.
     
             POST http://localhost:3000/api/appointments/create
@@ -85,14 +101,21 @@ commits con la evolución del proyecto.
 	            "price": 9734
                 
             }
+
+    
+    //CLIENT
     - Ver todas las citas que tengo como cliente (solo las propias).
         
             GET http://localhost:3000/api/appointments/client/appointment
 
+
+    //ADMIN, ARTIST, CLIENT
     - Eliminación de citas
     
             DELETE http://localhost:3000/api/appointments/2
     
+    
+    //ADMIN, ARTIST
     - Editar citas.
     
             PUT http://localhost:3000/api/appointments/3
@@ -108,32 +131,22 @@ commits con la evolución del proyecto.
                 
             }
 
+    //ARTIST
     - Ver todas las citas existentes conmigo (role tatuador).
     
             GET http://localhost:3000/api/appointments/artist/appointment
 
 
-- USER
+- USERS INFO
 
-    - Registro de usuarios.
-
-            POST http://localhost:3000/api/users/create
-        body:
-        ``` js
-            {
-		         "firstName": "artist bea",
-		         "email": "artistbea51@gmail.com",
-		         "password": "12345678",
-		         "role": "ARTIST"
-            }
-        ```
-    
-    - Perfil de usuario.
+    //ADMIN, ARTIST, CLIENT
+    - Ver mi perfil de usuario.
             
             GET http://localhost:3000/api/users/profile/
     
 
-    - Modificación de datos del perfil.
+    //ADMIN, ARTIST, CLIENT
+    - Modificación de mis datos de perfil.
     
             PUT http://localhost:3000/api/users/profile/update
 
@@ -149,11 +162,13 @@ commits con la evolución del proyecto.
                       "name": "client"
             }
 
-- ADMIN
-    
+- ARTISTS INFO
+
+    //ADMIN, ARTIST, CLIENT
     - Listar tatuadores
             
             GET http://localhost:3000/api/artists
-        ```
+    
+
 
 </details>
