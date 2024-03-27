@@ -106,7 +106,7 @@ commits con la evolución del proyecto.
     //CLIENT
     - Ver todas las citas que tengo como cliente (solo las propias).
         
-            GET http://localhost:3000/api/appointments/client/appointment
+            GET http://localhost:3000/api/appointments/client/appointments
 
 
     //ADMIN, ARTIST, CLIENT
