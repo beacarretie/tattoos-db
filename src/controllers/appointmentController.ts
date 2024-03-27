@@ -148,12 +148,11 @@ export const appointmentController = {
         }
     },
 
-    //Get all Appointments by Client
+    //Get all Appointments by Loged Client
     
     async getByLogedClient(req:Request,res:Response){
 
         const reqToken = req.tokenData.userId;
-        console.log(reqToken); 
     
         const logedClient = await Client.findOne({
             select:{
@@ -163,7 +162,7 @@ export const appointmentController = {
                 userID:req.tokenData!.userId
             }});
     
-            console.log(req.tokenData);
+        console.log(req.tokenData.userId,logedClient);
         const appointments = await Appointment.find({
             relations:{
                 artist:{

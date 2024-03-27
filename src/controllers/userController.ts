@@ -35,6 +35,23 @@ export const userController = {
 
             });
             await user.save();
+            if(role == "CLIENT"){
+
+                const client = Client.create({
+                    userID: user.id,
+                    area: "Client"
+                })
+                await client.save();
+            }
+
+            if(role == "ARTIST"){
+                const artist = Artist.create({
+                    userID: user.id,
+                    area: "generic",
+                    style: "generic"
+                })
+                await artist.save();
+            }
 
 
             res.status(200).json({message:"User created successfully"});
