@@ -8,7 +8,7 @@ const router = express.Router();
 /////////      ARTISTS ROUTES      //////////////////
 
 // get all artists
-router.get('/',authMiddleware,artistController.getAll);
+router.get('/',artistController.getAll);
 
 ///////////     PROTECTED ROUTES    /////////////////////
 

@@ -28,7 +28,8 @@ export const authMiddleware = (
         req.tokenData = {
             userId: decoded.userId,
             userRole: decoded.userRole,
-            }
+            firstName: decoded.firstName
+        }
         
 
         //call the next middleware

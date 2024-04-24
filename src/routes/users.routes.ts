@@ -7,12 +7,14 @@ const router = express.Router();
 
 //////////      PROFILE ROUTES      //////////////////
 
+//Create user
+router.post('/create', userController.create);
+
 //get loged user profile
 router.get('/profile/',authMiddleware, userController.getLogedUser);
 
 //Update loged user profile
 router.put('/profile/update',authMiddleware, userController.updateLogedUser);
-
 
 //get user by id
 router.get('/:id', authMiddleware, authorizeMiddleware(["Artist","Client"]), userController.getProfileById);
@@ -25,9 +27,6 @@ router.put('/edit/role/:id',authMiddleware,authorizeMiddleware(["Admin"]), userC
 
 //get all users
 router.get('/all', authMiddleware,authorizeMiddleware(["Admin"]), userController.getAll);
-
-//Create user
-router.post('/create', userController.create);
 
 //edit user
 router.put('/edit/:id',authMiddleware,authorizeMiddleware(["Admin"]), userController.update);

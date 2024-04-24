@@ -40,12 +40,14 @@ export class CreateAppointmentsTable1710495411316 implements MigrationInterface 
                     {
                         columnNames:["artist_id"],
                         referencedTableName: "artists",
-                        referencedColumnNames:["id"]
+                        referencedColumnNames:["id"],
+                        onDelete: "CASCADE"
                     },
                     {
                         columnNames:["client_id"],
                         referencedTableName: "clients",
-                        referencedColumnNames:["id"]
+                        referencedColumnNames:["id"],
+                        onDelete: "CASCADE"
                     }
                 ]
             })

@@ -70,7 +70,9 @@ export const authController = {
                 select:{
                     id:true,
                     email:true,
-                    password:true} ,
+                    password:true,
+                    firstName:true
+                } ,
                 where: {
                     email: email
                 }});
@@ -97,20 +99,17 @@ export const authController = {
             const tokenPayload: TokenData = {
                 userId: user.id,
                 userRole: userRoleName,
+                firstName: user.firstName
             };
             // Generate token
             const token = jwt.sign(tokenPayload,process.env.JWT_SECRET as string,{
-            expiresIn: "3h",
-         })
+                expiresIn: "3h",
+            })
 
             res.json({ message: "Login succesfully",token }).status(200);
 
         }catch(error){
-            console.log(error);
-            res.status(500).json({
-               message: "Failed to create user",
-             
-            });
+            res.status(500).json({ message: "Failed to create user" });
                
         }
     },
