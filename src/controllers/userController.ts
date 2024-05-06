@@ -23,7 +23,7 @@ export const userController = {
             const {firstName,lastName,email,phone,password,isActive,} = req.body;
             const hashedPassword = await bcrypt.hash(password,10);
             console.log(req.body, firstName)
-            const user = User.create({
+            let user = User.create({
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
@@ -33,8 +33,18 @@ export const userController = {
                 role:UserRoles.CLIENT
 
             });
-            await user.save();
 
+            
+            
+            user = await user.save();
+            
+            const client = Client.create({
+                userID: user.id,
+                area: `Cliente ${user.firstName} ${user.lastName}`
+            });
+
+            client.save();
+            
             res.status(200).json({message:"User created successfully"});
         }catch(error){
             console.error(error);

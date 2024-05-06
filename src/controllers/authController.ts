@@ -106,7 +106,7 @@ export const authController = {
                 expiresIn: "3h",
             })
 
-            res.json({ message: "Login succesfully",token }).status(200);
+            res.json({ message: "Login succesfully",token, userRole:userRoleName }).status(200);
 
         }catch(error){
             res.status(500).json({ message: "Failed to create user" });
