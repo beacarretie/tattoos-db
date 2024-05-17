@@ -246,7 +246,8 @@ export const appointmentController = {
                 }
                 },
                 where:{
-                    clientID:client?.id
+                    // clientID:client?.id
+                    clientID:req.tokenData.userId
                 }
                 
             });
