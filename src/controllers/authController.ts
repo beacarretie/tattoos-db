@@ -31,7 +31,7 @@ export const authController = {
               firstName: firstName,
               email: email,
               password : hashedPassword,
-              role: UserRoles.CLIENT,
+              role: UserRoles.STUDENT,
            });
   
            //save the user in DB

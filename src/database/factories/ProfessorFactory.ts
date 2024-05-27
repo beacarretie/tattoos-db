@@ -1,9 +1,9 @@
-import { Artist } from "../../models/Artist";
+import {Professor } from "../../models/Professor";
 import {faker} from "@faker-js/faker";
 import { Factory } from "./Factory";
 
-export class ArtistFactory extends Factory<Artist>{
-    protected generate():Artist{
+export class ProfessorFactory extends Factory<Professor>{
+    protected generate():Professor{
         return{
             style: faker.helpers.arrayElement([
                 "Neotraditional",
@@ -16,6 +16,6 @@ export class ArtistFactory extends Factory<Artist>{
             ]),
             area: faker.location.city()
             
-        } as Artist;
+        } as Professor;
     }
 }

@@ -6,8 +6,8 @@ export class RoleSeeder extends Seeder{
     protected async generate(): Promise<void> {
         const roles: Partial<Role>[] = [
             UserRoles.ADMIN,
-            UserRoles.ARTIST,
-            UserRoles.CLIENT
+            UserRoles.PROFESSOR,
+            UserRoles.STUDENT
         ];
         await Role.save(roles);
     }

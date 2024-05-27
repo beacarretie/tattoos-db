@@ -1,14 +1,14 @@
 import { SeederConfig } from "../../config/seeders";
 import { Seeder } from "./seeder";
-import { Artist } from "../../models/Artist";
+import { Professor } from "../../models/Professor";
 import { User } from "../../models/User";
 import { getRandomValueFromArray } from "../../helpers/common";
-import { ArtistFactory } from "../factories/ArtistFactory";
+import { ProfessorFactory } from "../factories/ProfessorFactory";
 
 
-export class ArtistSeeder extends Seeder{
+export class ProfessorSeeder extends Seeder{
     protected async generate():Promise <void>{
-        const {ARTISTS} = SeederConfig;
+        const {PROFESSORS} = SeederConfig;
 
         const users = await User.find(
             {
@@ -19,10 +19,10 @@ export class ArtistSeeder extends Seeder{
                 }
             }
         );
-        const artists = new ArtistFactory().createMany(ARTISTS);
-        artists.forEach((artist: { user: User; }) =>{
-            artist.user= getRandomValueFromArray(users)
+        const professors = new ProfessorFactory().createMany(PROFESSORS);
+        professors.forEach((professor: { user: User; }) =>{
+            professor.user= getRandomValueFromArray(users)
         })
-        await Artist.save(artists);
+        await Professor.save(professors);
     }
 }

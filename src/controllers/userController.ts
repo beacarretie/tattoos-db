@@ -1,8 +1,8 @@
 import { Request,Response } from "express";
 import { User } from "../models/User";
 import { Appointment } from "../models/Appointment";
-import { Artist } from "../models/Artist";
-import { Client } from "../models/Client";
+import { Professor } from "../models/Professor";
+import { Student } from "../models/Student";
 import { Role } from "../models/Role";
 import bcrypt from 'bcrypt';
 import { UserRoles } from "../constants/UserRoles";
@@ -30,7 +30,7 @@ export const userController = {
                 phone: phone,
                 password:hashedPassword,
                 isActive:isActive,
-                role:UserRoles.CLIENT
+                role:UserRoles.STUDENT
 
             });
 
@@ -38,12 +38,12 @@ export const userController = {
             
             user = await user.save();
             
-            const client = Client.create({
+            const student = Student.create({
                 userID: user.id,
-                area: `Cliente ${user.firstName} ${user.lastName}`
+                area: `Student ${user.firstName} ${user.lastName}`
             });
 
-            client.save();
+            student.save();
             
             res.status(200).json({message:"User created successfully"});
         }catch(error){

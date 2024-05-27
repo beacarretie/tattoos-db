@@ -1,13 +1,13 @@
-import { Client } from "../../models/Client";
+import { Student } from "../../models/Student";
 import { Seeder } from "./seeder";
 import { SeederConfig } from "../../config/seeders";
 import { User } from "../../models/User";
 import { getRandomValueFromArray } from "../../helpers/common";
-import { ClientFactory } from "../factories/ClientFactory";
+import { StudentFactory } from "../factories/StudentFactory";
 
-export class ClientSeeder extends Seeder{
+export class StudentSeeder extends Seeder{
     protected async generate():Promise <void>{
-        const {CLIENTS} = SeederConfig;
+        const {STUDENTS} = SeederConfig;
 
         const users =await User.find(
             {
@@ -18,10 +18,10 @@ export class ClientSeeder extends Seeder{
                 }
             }
         );
-        const clients = new ClientFactory().createMany(CLIENTS);
-        clients.forEach((client: { user: User; })=>{
-            client.user=getRandomValueFromArray(users)
+        const students = new StudentFactory().createMany(STUDENTS);
+        students.forEach((student: { user: User; })=>{
+            student.user=getRandomValueFromArray(users)
         })
-        await Client.save(clients);
+        await Student.save(students);
     } 
 }

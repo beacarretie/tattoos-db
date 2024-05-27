@@ -1,8 +1,8 @@
 import { Request,Response } from "express";
 import { User } from "../models/User";
 import { Appointment } from "../models/Appointment";
-import { Artist } from "../models/Artist";
-import { Client } from "../models/Client";
+import { Professor } from "../models/Professor";
+import { Student } from "../models/Student";
 import { Role } from "../models/Role";
 import bcrypt from 'bcrypt';
 import { UserRoles } from "../constants/UserRoles";
@@ -23,8 +23,8 @@ export const appointmentController = {
                         day_date:true,
                         description:true,
                         price:true,
-                        artistID:true,
-                        clientID: true,
+                        professorID:true,
+                        studentID: true,
                     },
                 }
             );
@@ -42,10 +42,10 @@ export const appointmentController = {
             const id = Number(req.params.id);
             const appointment = await Appointment.findOne({
                 relations:{
-                    artist:{
+                    professor:{
                         user:true
                     },
-                    client:{
+                    student:{
                         user:true
                     
                     },
@@ -55,7 +55,7 @@ export const appointmentController = {
                     day_date:true,
                     description:true,
                     price:true,
-                    artist:{
+                    professor:{
                             id:true,
                             user:{
                                 firstName:true,
@@ -63,7 +63,7 @@ export const appointmentController = {
                                 phone:true,
                             }                                  
                     },
-                    client:{
+                    student:{
                         id:true, 
                         user:{
                             firstName:true,
@@ -94,13 +94,13 @@ export const appointmentController = {
     //Create Appointment
     async create(req:Request,res:Response){
         try {
-            const {day_date,description,price,artist,client} = req.body;
+            const {day_date,description,price,professor,student} = req.body;
             const appointment = Appointment.create({
                 day_date:day_date,
                 description: description,
                 price:price,
-                artistID:artist,
-                clientID:client
+                professorID:professor,
+                student:student
             });
 
             await appointment.save();
@@ -115,7 +115,7 @@ export const appointmentController = {
     async update(req:Request,res:Response){
         try {
             const id = Number(req.params.id);
-            const {day_date,description,price,artist,client} = req.body;
+            const {day_date,description,price,professor,student} = req.body;
             const appointment = await Appointment.findOne({where:{id:id}});
                 
             if(!appointment){
@@ -125,8 +125,8 @@ export const appointmentController = {
             appointment.day_date = day_date;
             appointment.description = description;
             appointment.price = price;
-            appointment.artistID = artist;
-            appointment.clientID = client;
+            appointment.professorID = professor;
+            appointment.studentID = student;
             await appointment.save();
             res.json(appointment);
         }catch(error){
@@ -150,65 +150,8 @@ export const appointmentController = {
         }
     },
 
-    //Get all Appointments by Loged Client
-    
-    // async getByLogedClient(req:Request,res:Response){
-
-    //     const reqToken = req.tokenData.userId;
-    
-    //     const logedClient = await Client.findOne({
-    //         select:{
-    //             id:true
-    //         },
-    //         where:{
-    //             userID:req.tokenData!.userId
-    //         }});
-    
-    //     console.log(req.tokenData.userId,logedClient, "tokendata");
-    //     console.log(logedClient, "logedclient")
-    //     const appointments = await Appointment.find({
-    //         relations:{
-    //             artist:{
-    //                 user:true
-    //             },
-    //             client:{
-    //                 user:true
-    //             },
-    //         },
-    //         select:{
-    //             id:true,
-    //             day_date:true,
-    //             description:true,
-    //             price:true,
-    //             artist:{
-    //                     id:true,
-    //                     user:{
-    //                         firstName:true,
-    //                         email:true,
-    //                         phone:true,
-    //                     }                                
-    //             },
-    //             client:{
-    //                 id:true,
-    //                 user:{
-    //                     firstName:true,
-    //                     email:true,
-    //                     phone:true,                
-    //                 }
-                
-                
-    //             }
-    //         },
-    //         where:{
-    //             clientID:req.tokenData!.userId
-    //         }});
-    
-    //         res.json(appointments);
-    
-    //     },
-
-    async getByLogedClient(req:Request,res:Response){
-        const client = await Client.findOne({
+    async getByLogedStudent(req:Request,res:Response){
+        const student = await Student.findOne({
             select:{
                 id:true
             },
@@ -216,19 +159,19 @@ export const appointmentController = {
                 userID:req.tokenData?.userId
             }});
             console.log(req.tokenData);
-            console.log(client);
+            console.log(student);
     
         const appointments = await Appointment.find({
             relations:{
-                artist:true,
-                client:true,
+                professor:true,
+                student:true,
             },
             select:{
                 id:true,
                 day_date:true,
                 description:true,
                 price:true,
-                artist:{
+                professor:{
                         id:true,
                         user:{
                             firstName:true,
@@ -236,7 +179,7 @@ export const appointmentController = {
                             phone:true,
                         }                                  
                 },
-                client:{
+                student:{
                     id:true, 
                     user:{
                         firstName:true,
@@ -246,8 +189,8 @@ export const appointmentController = {
                 }
                 },
                 where:{
-                    // clientID:client?.id
-                    clientID:req.tokenData.userId
+                    // studentID:student?.id
+                    studentID:req.tokenData.userId
                 }
                 
             });
@@ -256,9 +199,9 @@ export const appointmentController = {
         },
 
 
-    //Get all Appointments by Loged Artist
-    async getByLogedArtist(req:Request,res:Response){
-        const artist = await Artist.findOne({
+    //Get all Appointments by Loged Professor
+    async getByLogedProfessor(req:Request,res:Response){
+        const professor = await Professor.findOne({
             select:{
                 id:true
             },
@@ -266,19 +209,19 @@ export const appointmentController = {
                 userID:req.tokenData?.userId
             }});
             console.log(req.tokenData.userId);
-            console.log("caca",artist);
+            console.log("caca",professor);
     
         const appointments = await Appointment.find({
             relations:{
-                artist:true,
-                client:true,
+                professor:true,
+                student:true,
             },
             select:{
                 id:true,
                 day_date:true,
                 description:true,
                 price:true,
-                artist:{
+                professor:{
                         id:true,
                         user:{
                             firstName:true,
@@ -286,7 +229,7 @@ export const appointmentController = {
                             phone:true,
                         }                                  
                 },
-                client:{
+                student:{
                     id:true, 
                     user:{
                         firstName:true,
@@ -296,7 +239,7 @@ export const appointmentController = {
                 }
                 },
                 where:{
-                    artistID:req.tokenData.userId
+                    professorID:req.tokenData.userId
                 }
                 
             });

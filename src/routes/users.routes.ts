@@ -17,7 +17,7 @@ router.get('/profile/',authMiddleware, userController.getLogedUser);
 router.put('/profile/update',authMiddleware, userController.updateLogedUser);
 
 //get user by id
-router.get('/:id', authMiddleware, authorizeMiddleware(["Artist","Client"]), userController.getProfileById);
+router.get('/:id', authMiddleware, authorizeMiddleware(["Professor","Student"]), userController.getProfileById);
 
 
 ///////////     PROTECTED ROUTES    /////////////////////

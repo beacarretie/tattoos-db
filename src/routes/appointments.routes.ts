@@ -7,19 +7,19 @@ const router = express.Router();
 /////////      APPOINTMENTS ROUTES      //////////////////
 
 //create appointment
-router.post('/create',authMiddleware, authorizeMiddleware(["artist"]), appointmentController.create);
+router.post('/create',authMiddleware, authorizeMiddleware(["professor"]), appointmentController.create);
 
 //edit appointment
-router.put('/:id',authMiddleware, authorizeMiddleware(["artist"]), appointmentController.update);
+router.put('/:id',authMiddleware, authorizeMiddleware(["professor"]), appointmentController.update);
 
 //delete appointment
-router.delete('/:id',authMiddleware, authorizeMiddleware(["client","artist"]), appointmentController.delete);
+router.delete('/:id',authMiddleware, authorizeMiddleware(["student","professor"]), appointmentController.delete);
 
-//get appointments by client
-router.get('/client/appointments',authMiddleware, authorizeMiddleware(["client"]), appointmentController.getByLogedClient);
+//get appointments by student
+router.get('/student/appointments',authMiddleware, authorizeMiddleware(["student"]), appointmentController.getByLogedStudent);
 
-//get appointments by artist
-router.get('/artist/appointments',authMiddleware, authorizeMiddleware(["artist"]), appointmentController.getByLogedArtist);
+//get appointments by professor
+router.get('/professor/appointments',authMiddleware, authorizeMiddleware(["professor"]), appointmentController.getByLogedProfessor);
 
 
 //////////////////// PROTECTED ROUTES //////////////////////

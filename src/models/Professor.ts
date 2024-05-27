@@ -2,8 +2,8 @@ import { Entity,Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, BaseEntity
 import { User } from "./User"
 import { Appointment } from "./Appointment"
 
-@Entity('artists')
-export class Artist extends BaseEntity {
+@Entity('professors')
+export class Professor extends BaseEntity {
     @PrimaryGeneratedColumn()
     id!:number;
 
@@ -17,13 +17,13 @@ export class Artist extends BaseEntity {
     area!: string;
 
 
-    //Relation Artist {1}--{1} User
+    //Relation Professor {1}--{1} User
     @OneToOne(()=>User,(user)=>user.id)
     @JoinColumn({name:"user_id"})
     user!:User
 
-    // Relation: Artist {1}--{0..n} Appointments
-    @OneToMany(() => Appointment, (Appointment) => Appointment.artist)
+    // Relation: Professor {1}--{0..n} Appointments
+    @OneToMany(() => Appointment, (Appointment) => Appointment.professor)
     appointments?: Appointment[];
     
 }

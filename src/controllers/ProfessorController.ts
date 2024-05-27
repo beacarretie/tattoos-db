@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
-import { Artist } from "../models/Artist";
+import { Professor } from "../models/Professor";
 import { UserRoles } from "../constants/UserRoles";
 import { User } from "../models/User";
 
 
-export const artistController = {
+export const professorController = {
     async getAll(req:Request,res:Response){
         try{
             const page = Number(req.query.page) ||1;
             const limit = Number(req.query.limit) || 10;
 
-            const artists = await Artist.findAndCount(
+            const professors = await Professor.findAndCount(
                 {   
                     relations:{
                         user:true
@@ -25,7 +25,7 @@ export const artistController = {
                     }
                 }
             );
-            res.json(artists);
+            res.json(professors);
 
         }catch(error){
             res.status(500).json({message:"Something went wrong"});
@@ -37,7 +37,7 @@ export const artistController = {
             const {firstName, email, password, phone,style,area} = req.body;
 
             if(!firstName || !email || !password || !phone){
-                res.status(400).json({message:"Failed to create artist"});
+                res.status(400).json({message:"Failed to create professor"});
                 return;
             }
 
@@ -53,20 +53,20 @@ export const artistController = {
                 email:email,
                 password:password,
                 phone:phone,
-                role:UserRoles.ARTIST
+                role:UserRoles.PROFESSOR
             });
 
             await User.save(user);
 
-            const artist = Artist.create({
+            const professor = Professor.create({
                 style:style,
                 area:area,
                 user:user
             });
 
-            await Artist.save(artist);
+            await Professor.save(professor);
 
-            res.status(201).json({message:"Artist created succesfully"});
+            res.status(201).json({message:"Professor created succesfully"});
 
 
         }catch(error){}

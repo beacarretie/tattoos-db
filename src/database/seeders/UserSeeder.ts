@@ -6,7 +6,7 @@ import { Seeder } from "./seeder";
 
 export class UserSeeder extends Seeder {
     protected async generate(): Promise<void> {
-       const { ADMINS, ARTISTS, CLIENTS } = SeederConfig;
+       const { ADMINS, PROFESSORS, STUDENTS } = SeederConfig;
  
        const userFactory = new UserFactory();
  
@@ -17,19 +17,19 @@ export class UserSeeder extends Seeder {
        });
  
        // managers
-       const artistUsers = userFactory.createMany(ARTISTS);
-       artistUsers.forEach((user) => {
-          user.role = UserRoles.ARTIST;
+       const professorUsers = userFactory.createMany(PROFESSORS);
+       professorUsers.forEach((user) => {
+          user.role = UserRoles.PROFESSOR;
        });
  
-       // clients
-       const clientUsers = userFactory.createMany(CLIENTS);
-       clientUsers.forEach((user) => {
-          user.role = UserRoles.CLIENT;
+       // students
+       const studentUsers = userFactory.createMany(STUDENTS);
+       studentUsers.forEach((user) => {
+          user.role = UserRoles.STUDENT;
        });
  
        // save to database
-       const allUsers = [...adminUsers, ...artistUsers, ...clientUsers];
+       const allUsers = [...adminUsers, ...professorUsers, ...studentUsers];
        await User.save(allUsers);
     }
  }

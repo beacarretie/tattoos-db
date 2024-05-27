@@ -2,8 +2,8 @@ import { Entity, PrimaryGeneratedColumn,Column,OneToOne,JoinColumn,OneToMany, Ba
 import { User } from "./User";
 import { Appointment } from "./Appointment";
 
-@Entity('clients')
-export class Client extends BaseEntity{
+@Entity('students')
+export class Student extends BaseEntity{
     @PrimaryGeneratedColumn()
     id!:number;
 
@@ -14,14 +14,14 @@ export class Client extends BaseEntity{
     area!: string;
 
     
-    //Relation: Client {1}--{1} User
+    //Relation: Student {1}--{1} User
     @OneToOne(()=>User,(user)=>user.id)
     @JoinColumn({name:"user_id"})
     user!:User
 
-    //Relation Client {1}--{0..n} Appointments
-    @OneToMany(() => Appointment, (Appointment) => Appointment.client)
-    appointments?: Appointment[];
+    //Relation Student {1}--{0..n} Students
+    @OneToMany(() => Appointment, (Appointment) => Appointment.student)
+    students?: Appointment[];
 
    
 }

@@ -1,19 +1,19 @@
 import express,{Request, Response} from 'express';
-import { artistController } from '../controllers/artistController';
+import { professorController } from '../controllers/ProfessorController';
 import { authorizeMiddleware } from '../middlewares/authorize';
 import { authMiddleware } from '../middlewares/authMiddleware';
 
 const router = express.Router();
 
-/////////      ARTISTS ROUTES      //////////////////
+/////////      PROFESSORS ROUTES      //////////////////
 
-// get all artists
-router.get('/',artistController.getAll);
+// get all professors
+router.get('/',professorController.getAll);
 
 ///////////     PROTECTED ROUTES    /////////////////////
 
-//create artist
-router.post('/create',authorizeMiddleware(["Admin"]),artistController.create);
+//create professor
+router.post('/create',authorizeMiddleware(["Admin"]),professorController.create);
 
 
 export default router;

@@ -4,7 +4,7 @@ import usersRoutes from './users.routes';
 import baseRoutes from './base.routes';
 import appointmentsRoutes from './appointments.routes';
 import authRoutes from './auth.routes';
-import artistsRoutes from './artists.routes'
+import professorsRoutes from './professors.routes'
 
 const router = express.Router();
 
@@ -22,7 +22,7 @@ router.use('/appointments', appointmentsRoutes);
 // auth routes
 router.use('/auth',authRoutes);
 
-// artists routes
-router.use('/artists',artistsRoutes);
+// professors routes
+router.use('/professors',professorsRoutes);
 
 export default router;
